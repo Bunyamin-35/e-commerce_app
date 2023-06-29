@@ -1,0 +1,80 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+    border-bottom: .5px solid #f27a1a;
+}
+
+.logo {
+    width: 120px;
+    height: auto;
+}
+
+.logo img {
+    width: 100%;
+}
+
+.search {
+    flex-grow: 4;
+    border: 1px solid #b4b3b3;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2px 8px;
+}
+
+.search input {
+    flex-grow: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+}
+
+.search .searchicon {
+    cursor: pointer;
+}
+
+.actions {
+    display: flex;
+    justify-content: space-around;
+    flex-grow: 1;
+}
+
+.homepage,
+.sign_in,
+.sign_up,
+.cart {
+    display: flex;
+    align-items: center;
+    font-size: 22px;
+    transition: all 0.3s;
+}
+
+.homepage:hover,
+.sign_in:hover,
+.sign_up:hover,
+.cart:hover {
+    color: #f27a1a;
+}
+
+.actions a div {
+    margin-left: 5px;
+    font-size: 14px;
+}
+
+
+@media screen and (max-width:768px) {
+    .actions {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        height: 60px;
+        border-top: .5px solid #f27a1a;
+        justify-content: space-around;
+    }
+}

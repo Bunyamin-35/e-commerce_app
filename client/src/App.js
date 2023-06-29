@@ -1,10 +1,13 @@
-
-import './App.css';
+import Home from './pages/Home';
+import { Routes, Route } from "react-router-dom"
+import "./index.css"
 
 function App() {
   return (
-    <div className="App">
-      E-commerce App Client Side
+    <div>
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
     </div>
   );
 }
