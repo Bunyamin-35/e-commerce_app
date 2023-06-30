@@ -36,10 +36,10 @@ const Navbar = () => {
           <div>Sign In</div>
         </NavLink>
         <Badge count={5} offset={[-30, -4]}>
-          <Link to="/" className={styles.cart}>
+          <NavLink to="/cart" className={styles.cart}>
             <ShoppingCartOutlined />
             <div>Cart</div>
-          </Link>
+          </NavLink>
         </Badge>
       </div>
     </div >
