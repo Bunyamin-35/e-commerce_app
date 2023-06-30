@@ -1,6 +1,6 @@
-@tailwind base;
+/* @tailwind base;
 @tailwind components;
-@tailwind utilities;
+@tailwind utilities; */
 
 body {
   margin: 0;
@@ -9,4 +9,13 @@ body {
 a{
   text-decoration: none;
   color: #333;
+}
+.active{
+  color: #f27a1a;
+}
+
+.homepage {
+  position: relative;
+  min-height: 100vh;
+  
 }

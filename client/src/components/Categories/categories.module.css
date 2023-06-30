@@ -1,0 +1,15 @@
+.category {
+    display: flex;
+    height: 50px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    /* border-bottom: .5px solid #f27a1a; */
+}
+
+.category_item {
+    border: 1px solid #f27a1a;
+    border-radius: 10px;
+    margin-right: 2px;
+    padding: 0 8px;
+}

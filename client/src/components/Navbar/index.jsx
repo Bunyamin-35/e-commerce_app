@@ -1,8 +1,8 @@
 import React from 'react'
-import styles from "./index.module.css"
+import styles from "./navbar.module.css"
 import logo from "../../assets/logo.png"
 
-import { Link } from "react-router-dom"
+import { NavLink,Link } from "react-router-dom"
 
 
 import { Badge } from 'antd';
@@ -27,14 +27,14 @@ const Navbar = () => {
         <SearchOutlined className={styles.searchicon} />
       </form>
       <div className={styles.actions}>
-        <Link to="/" className={styles.homepage}>
+        <NavLink to={"/"} className={styles.homepage}>
           <HomeOutlined />
           <div>Home</div>
-        </Link>
-        <Link to="/" className={styles.sign_in}>
+        </NavLink>
+        <NavLink to="/login" className={styles.sign_in}>
           <LoginOutlined />
           <div>Sign In</div>
-        </Link>
+        </NavLink>
         <Badge count={5} offset={[-30, -4]}>
           <Link to="/" className={styles.cart}>
             <ShoppingCartOutlined />

@@ -5,6 +5,9 @@
     padding: 0 2rem;
     border-bottom: .5px solid #f27a1a;
 }
+.active {
+    background-color: red;
+}
 
 .logo {
     width: 120px;
