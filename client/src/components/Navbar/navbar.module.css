@@ -79,5 +79,7 @@
         height: 60px;
         border-top: .5px solid #f27a1a;
         justify-content: space-around;
+        background-color: #fff;
+        z-index: 1;
     }
 }

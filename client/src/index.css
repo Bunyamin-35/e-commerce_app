@@ -31,8 +31,10 @@ a {
 }
 
 .cart_table {
-  flex-grow: 1;
+  flex-grow: 3;
   margin-right: 1rem;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
 }
 
 .bill {
@@ -41,6 +43,9 @@ a {
   box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.3);
   border-radius: 10px;
   padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 
 }
 
@@ -61,6 +66,7 @@ a {
 
 .confirm_btn {
   width: 100%;
+  height: auto;
   padding: 1rem;
   border-radius: 10px;
   background-color: #f27a1a;
