@@ -31,10 +31,104 @@ a {
 }
 
 .cart_table {
-  flex-grow: 3;
+  flex-grow: 5;
   margin-right: 1rem;
   box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.3);
   border-radius: 10px;
+  padding: 0 1rem;
+
+}
+
+.cart_table_title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cart_item_wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.cart_item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: .5rem 0;
+}
+
+.cart_item_details {
+  flex-grow: 3;
+  display: flex;
+  align-items: center;
+}
+
+.cart_item_details img {
+  width: 60px;
+}
+
+.cart_item_price {
+  flex-grow: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+}
+
+.cart_item_desc {
+  width: 100%;
+  margin-left: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cart_item_actions {
+  display: flex;
+
+}
+
+.delete_btn {
+  border: none;
+  outline: none;
+  background: transparent;
+  color: red;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+
+.itemquantity_btns {
+  width: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem 0;
+}
+
+.minusbtn,
+.plusbtn {
+  border: none;
+  outline: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.total_price {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  border-top: 1px solid;
+  margin-top: 1rem;
+  font-size: 1.4rem;
+}
+
+.total_price span {
+  font-size: 1.6rem;
+  font-weight: 600;
 }
 
 .bill {
@@ -45,7 +139,6 @@ a {
   padding: 0 1rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
 
 }
 
@@ -83,4 +176,19 @@ a {
 
 .confirm_btn:hover {
   opacity: 1.5;
+}
+
+@media screen and (max-width:768px) {
+  .cartpage {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  .cart_table {
+    flex-grow: 1;
+    margin: 0 0 1rem;
+  }
+  .bill {
+    flex-grow: 1;
+  }
 }

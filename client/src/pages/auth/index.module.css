@@ -1,0 +1,59 @@
+/* Login Page Start */
+.loginpage {
+    /* gerekli stil ayarları */
+    position: relative;
+}
+.loginpagebg{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    /* background-image: url("https://images.pexels.com/photos/164005/pexels-photo-164005.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+    background-size:cover;
+    background-position:center; */
+    opacity: 0.8;
+}
+.loginpagecontent{
+    width: 90%;
+    height: 90vh;
+    border-radius: 2rem;
+    overflow: hidden;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color:#fff;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.3);
+
+} 
+.animation{
+    width: 66.667%;
+    height: 100%;
+    background-color: #f27a1a;
+}
+.loginform{
+    width: 33.333%;
+    height: 100%;
+}
+.form {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.emailinput,
+.passwordinput {
+    width: 60%;
+}
+.btnbox{
+    width: 60%;
+}
+.btn {
+    width: 100%;
+}
+
+/* Login Page End */

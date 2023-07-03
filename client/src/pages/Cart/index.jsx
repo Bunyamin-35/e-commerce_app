@@ -1,50 +1,14 @@
 import React from 'react'
 import { Modal } from 'antd';
-import { Form, Input, Table, Button } from 'antd';
+import { Form, Input, Button } from 'antd';
 
 import { useState } from 'react';
 import Navbar from '../../components/Navbar/index.jsx';
 
 
 const Cart = () => {
-    const dataSource = [
-        {
-            key: '1',
-            name: 'Mike',
-            age: 32,
-            address: '10 Downing Street',
-        },
-        {
-            key: '2',
-            name: 'John',
-            age: 42,
-            address: '10 Downing Street',
-        },
-        {
-            key: '3',
-            name: 'Mary',
-            age: 27,
-            address: '10 Cycle Street',
-        },
-    ];
 
-    const columns = [
-        {
-            title: 'Name',
-            dataIndex: 'name',
-            key: 'name',
-        },
-        {
-            title: 'Age',
-            dataIndex: 'age',
-            key: 'age',
-        },
-        {
-            title: 'Address',
-            dataIndex: 'address',
-            key: 'address',
-        },
-    ];
+
     const [isModalOpen, setIsModalOpen] = useState(false);
 
 
@@ -59,8 +23,72 @@ const Cart = () => {
         <div>
             <Navbar />
             <div className='cartpage'>
-                {/* <Table  columns={columns} dataSource={data} pagination={false} /> */}
-                <Table className="cart_table" dataSource={dataSource} columns={columns} pagination={false} />
+                <div className="cart_table">
+                    <div className='cart_table_title'>
+                        <h2>Shopping Cart</h2>
+                        <h3>Price</h3>
+                    </div>
+                    <div className='cart_item_wrapper'>
+                        <div className='cart_item'>
+                            <div className='cart_item_details'>
+                                <img src="https://www.ubuy.com.tr/productimg/?image=aHR0cHM6Ly9tLm1lZGlhLWFtYXpvbi5jb20vaW1hZ2VzL0kvNzE1enJBNWNtTEwuX0FDX1NMMTUwMF8uanBn.jpg" alt='' />
+                                <div className='cart_item_desc'>
+                                    <div>DFSDF</div>
+                                    <div className='cart_item_actions'>
+                                        <div className='itemquantity_btns'>
+                                            <button className='minusbtn'>-</button>
+                                            <span>0</span>
+                                            <button className='plusbtn'>+</button>
+                                        </div>
+                                        <button className='delete_btn'>Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className='cart_item_price'>
+                                215 TL
+                            </div>
+                        </div>
+                        <div className='cart_item'>
+                            <div className='cart_item_details'>
+                                <img src="https://www.ubuy.com.tr/productimg/?image=aHR0cHM6Ly9tLm1lZGlhLWFtYXpvbi5jb20vaW1hZ2VzL0kvNzE1enJBNWNtTEwuX0FDX1NMMTUwMF8uanBn.jpg" alt='' />
+                                <div className='cart_item_desc'>
+                                    <div>DFSDF</div>
+                                    <div className='cart_item_actions'>
+                                        <div className='itemquantity_btns'>
+                                            <button className='minusbtn'>-</button>
+                                            <span>0</span>
+                                            <button className='plusbtn'>+</button>
+                                        </div>
+                                        <button className='delete_btn'>Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className='cart_item_price'>
+                                215 TL
+                            </div>
+                        </div>
+                        <div className='cart_item'>
+                            <div className='cart_item_details'>
+                                <img src="https://www.ubuy.com.tr/productimg/?image=aHR0cHM6Ly9tLm1lZGlhLWFtYXpvbi5jb20vaW1hZ2VzL0kvNzE1enJBNWNtTEwuX0FDX1NMMTUwMF8uanBn.jpg" alt='' />
+                                <div className='cart_item_desc'>
+                                    <div>DFSDF</div>
+                                    <div className='cart_item_actions'>
+                                        <div className='itemquantity_btns'>
+                                            <button className='minusbtn'>-</button>
+                                            <span>0</span>
+                                            <button className='plusbtn'>+</button>
+                                        </div>
+                                        <button className='delete_btn'>Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className='cart_item_price'>
+                                215 TL
+                            </div>
+                        </div>
+                    </div>
+                    <div className='total_price'><span>Total Price:</span>645 TL</div>
+                </div>
                 <div className='bill'>
                     <h2>Order</h2>
                     <div className='bill_info'>

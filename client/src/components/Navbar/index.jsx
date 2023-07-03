@@ -2,7 +2,7 @@ import React from 'react'
 import styles from "./navbar.module.css"
 import logo from "../../assets/logo.png"
 
-import { NavLink,Link } from "react-router-dom"
+import { NavLink, Link } from "react-router-dom"
 
 
 import { Badge } from 'antd';
@@ -11,7 +11,8 @@ import {
   HomeOutlined,
   LoginOutlined,
   ShoppingCartOutlined,
-  SearchOutlined
+  SearchOutlined,
+  ShoppingOutlined
 } from '@ant-design/icons';
 
 const Navbar = () => {
@@ -30,6 +31,10 @@ const Navbar = () => {
         <NavLink to={"/"} className={styles.homepage}>
           <HomeOutlined />
           <div>Home</div>
+        </NavLink>
+        <NavLink to="/orders" className={styles.sign_in}>
+          <ShoppingOutlined />
+          <div>Orders</div>
         </NavLink>
         <NavLink to="/login" className={styles.sign_in}>
           <LoginOutlined />
