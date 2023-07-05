@@ -3,16 +3,15 @@ import mongoose from "mongoose"
 const {Schema} = mongoose;
 
 const orderSchema = new Schema({
-    title:{
+    customerName:{
         type:String,
         required:true,
     },
-    img:{
-        type:String,
+    cartItem:{
+        type:Array,
         required:true,
-        trim:true,
     },
-    price:{
+    totalPrice:{
         type:Number,
         required:true,
     },
@@ -22,5 +21,5 @@ const orderSchema = new Schema({
     },
 })
 
-const Orders = mongoose.model("Category",orderSchema);
+const Orders = mongoose.model("Order",orderSchema);
 export default Orders;

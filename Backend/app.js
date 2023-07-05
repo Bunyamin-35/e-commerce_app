@@ -5,6 +5,8 @@ import connection from "./db.js";
 
 // Routes
 import categoryRoute from "./routes/categoryRoute.js"
+import productRoute from "./routes/productRoute.js"
+import orderRoute from "./routes/orderRoute.js"
 
 dotenv.config();
 
@@ -19,11 +21,13 @@ const port = process.env.PORT;
 app.use(express.json());
 app.use(cors());
 
-app.use("/backend/categories",categoryRoute);
+//Routes
 
-app.get("/",(req,res)=>{
-    res.send("Hello World!")
-})
+app.use("/backend/categories",categoryRoute);
+app.use("/backend/products",productRoute);
+app.use("/backend/orders",orderRoute);
+
+
 
 app.listen(port,()=>{
     console.log(`Server is up on : ${port}`);

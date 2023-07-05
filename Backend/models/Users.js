@@ -2,7 +2,7 @@ import mongoose from "mongoose"
 
 const {Schema} = mongoose;
 
-const categorySchema = new Schema({
+const userSchema = new Schema({
     username:{
         type:String,
         required:true,
@@ -21,5 +21,5 @@ const categorySchema = new Schema({
     },
 })
 
-const Category = mongoose.model("Category",categorySchema);
-export default Category;
+const User = mongoose.model("User",userSchema);
+export default User;
