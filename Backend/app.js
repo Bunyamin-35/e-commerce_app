@@ -7,6 +7,7 @@ import connection from "./db.js";
 import categoryRoute from "./routes/categoryRoute.js"
 import productRoute from "./routes/productRoute.js"
 import orderRoute from "./routes/orderRoute.js"
+import authRoute from "./routes/authRoute.js"
 
 dotenv.config();
 
@@ -26,6 +27,7 @@ app.use(cors());
 app.use("/backend/categories",categoryRoute);
 app.use("/backend/products",productRoute);
 app.use("/backend/orders",orderRoute);
+app.use("/backend/users",authRoute);
 
 
 
