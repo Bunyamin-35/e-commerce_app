@@ -1,20 +1,20 @@
 import React from 'react'
-import { Modal } from 'antd';
-import { Form, Input, Button } from 'antd';
+// import { Modal } from 'antd';
+// import { Form, Input, Button } from 'antd';
 
-import { useState } from 'react';
+// import { useState } from 'react';
 import Navbar from '../../components/Navbar/index.jsx';
 
 
 const Orders = () => {
 
 
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    //const [isModalOpen, setIsModalOpen] = useState(false);
 
 
-    const onFinish = (values) => {
-        console.log('Success:', values);
-    };
+    // const onFinish = (values) => {
+    //     console.log('Success:', values);
+    // };
     // const onFinishFailed = (errorInfo) => {
     //     console.log('Failed:', errorInfo);
     // };

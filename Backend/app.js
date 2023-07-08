@@ -27,7 +27,7 @@ app.use(cors());
 app.use("/backend/categories",categoryRoute);
 app.use("/backend/products",productRoute);
 app.use("/backend/orders",orderRoute);
-app.use("/backend/users",authRoute);
+app.use("/backend/auth",authRoute);
 
 
 
