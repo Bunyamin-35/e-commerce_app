@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom"
+
 import { Image } from 'antd';
 import { useState } from 'react';
 
@@ -6,12 +6,15 @@ import { ShoppingCartOutlined } from "@ant-design/icons"
 
 import styles from "./details.module.css"
 
-const Details = () => {
-    const { id } = useParams();
+const Details = ({data}) => {
+    
     const [visible, setVisible] = useState(false);
+
+    console.log("data:",data);
+
     return (
         <div>
-            <h2>Details {id}</h2>
+            <h2>Details </h2>
             <div className={styles.contents}>
                 <div className={styles.image}>
                     <Image
@@ -19,7 +22,7 @@ const Details = () => {
                             visible: false,
                         }}
                         width={300}
-                        src="https://www.ubuy.com.tr/productimg/?image=aHR0cHM6Ly9tLm1lZGlhLWFtYXpvbi5jb20vaW1hZ2VzL0kvNzE1enJBNWNtTEwuX0FDX1NMMTUwMF8uanBn.jpg"
+                        src={data.theProduct.img}
                         onClick={() => setVisible(true)}
                     />
                     <div
@@ -33,9 +36,9 @@ const Details = () => {
                                 onVisibleChange: (vis) => setVisible(vis),
                             }}
                         >
-                            <Image src="https://www.ubuy.com.tr/productimg/?image=aHR0cHM6Ly9tLm1lZGlhLWFtYXpvbi5jb20vaW1hZ2VzL0kvNzE1enJBNWNtTEwuX0FDX1NMMTUwMF8uanBn.jpg" />
-                            <Image src="https://www.ubuy.com.tr/productimg/?image=aHR0cHM6Ly9tLm1lZGlhLWFtYXpvbi5jb20vaW1hZ2VzL0kvNzE1enJBNWNtTEwuX0FDX1NMMTUwMF8uanBn.jpg" />
-                            <Image src="https://www.ubuy.com.tr/productimg/?image=aHR0cHM6Ly9tLm1lZGlhLWFtYXpvbi5jb20vaW1hZ2VzL0kvNzE1enJBNWNtTEwuX0FDX1NMMTUwMF8uanBn.jpg" />
+                            <Image src={data.theProduct.img} />
+                            <Image src={data.theProduct.img} />
+                            <Image src={data.theProduct.img} />
                         </Image.PreviewGroup>
                     </div>
                 </div>

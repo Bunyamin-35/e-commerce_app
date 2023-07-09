@@ -5,3 +5,9 @@ export const fetchProducts = async () => {
 
     return data;
 }
+
+export const fetchProduct = async (product_id) => {
+    const {data} = await axios.get(`http://localhost:4000/backend/products/${product_id}`);
+
+    return data;
+}

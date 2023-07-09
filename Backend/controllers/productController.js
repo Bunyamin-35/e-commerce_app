@@ -50,7 +50,25 @@ const getAllProducts = async (req, res) => {
 //         res.status(400).json(error);
 //     }
 // });
+//Get the product
 
+const getTheProduct = async (req, res) => {
+    const { product_id } = req.params;
+    try {
+        
+        const theProduct = await Products.findById(product_id);
+        res.status(201).json({
+            succeded: true,
+            theProduct,
+        });
+    } catch (error) {
+        res.status(500).json({
+            succeded: false,
+            error,
+        });
+
+    }
+}
 //Update the product
 const updateTheProduct = async (req, res) => {
     try {
@@ -100,4 +118,4 @@ const deleteTheProduct = async (req, res) => {
 //     }
 // });
 
-export {createProduct,getAllProducts,updateTheProduct,deleteTheProduct};
+export {createProduct,getAllProducts,getTheProduct,updateTheProduct,deleteTheProduct};

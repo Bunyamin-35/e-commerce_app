@@ -7,9 +7,9 @@ import {
     CaretRightOutlined,
 } from '@ant-design/icons';
 
-const Card = ({item}) => { 
+const Card = ({item}) => {
     return (
-        <Link to={`/${2}`}>
+        <Link to={`/${item._id}`}>
                 <div className={styles.card}>
                     <div className={styles.card_image}>
                         <img src={item.img} alt='' />
