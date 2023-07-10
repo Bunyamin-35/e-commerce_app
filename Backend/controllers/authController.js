@@ -5,11 +5,24 @@ import bcrypt from "bcrypt"
 
 const createUser = async (req, res) => {
     try {
-        const newUser = await Users.create(req.body);
-        res.status(201).json({
-            succeded: true,
-            newUser,
-        });
+        let isExist = false;
+        isExist = await Users.findOne({ username: req.body.username });
+        console.log("isExist", isExist);
+        if (isExist) {
+            res.status(401).json({
+                succeded:false,
+                message:"The username is already used."
+            })
+        } else {
+            const newUser = await Users.create(req.body);
+            res.status(201).json(
+                {
+                    succeded: true,
+                    newUser,
+                }
+            );
+        }
+
     } catch (error) {
         res.status(500).json({
             succeded: false,

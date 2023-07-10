@@ -1,16 +1,27 @@
 import React from 'react'
 // import { Link } from "react-router-dom"
-// import { useState } from 'react';
+import { useState } from 'react';
 
 import styles from "./index.module.css"
-import { Button, Form, Input } from 'antd';
+import { Button, Form, Input, Alert } from 'antd';
+
+import { registerUser } from '../../api';
 
 
 
 
 const Register = () => {
-  const onFinish = (values) => {
-    console.log('Success:', values);
+
+  const [error, setError] = useState("");
+
+  const onFinish = async (values) => {
+    try {
+      const registerValues = await registerUser({ username: values.username, email: values.email, password: values.password });
+      console.log(registerValues);
+    } catch (error) {
+      setError(error.response.data.message);
+    }
+
   };
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
@@ -36,20 +47,25 @@ const Register = () => {
             autoComplete="off"
           >
             <h2>Sign Up</h2>
+            {error &&
+              <Alert
+                message={error}
+                banner
+              />}
             <Form.Item
               className={styles.emailinput}
-              label="First Name"
-              name="name"
+              label="Username"
+              name="username"
               rules={[
                 {
                   required: true,
-                  message: 'Please input your first name!',
+                  message: 'Please input your username!',
                 },
               ]}
             >
               <Input />
             </Form.Item>
-            <Form.Item
+            {/* <Form.Item
               className={styles.emailinput}
               label="Last Name"
               name="lastname"
@@ -61,7 +77,7 @@ const Register = () => {
               ]}
             >
               <Input />
-            </Form.Item>
+            </Form.Item> */}
             <Form.Item
               className={styles.emailinput}
               label="E-mail"
