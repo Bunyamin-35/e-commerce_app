@@ -17,3 +17,9 @@ export const registerUser = async (input) => {
 
     return data;
 }
+
+export const loginUser = async (input) => {
+    const {data} = await axios.post("http://localhost:4000/backend/auth/login",input);
+
+    return data;
+}

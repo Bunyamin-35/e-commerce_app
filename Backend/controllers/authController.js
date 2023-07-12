@@ -1,5 +1,6 @@
 import Users from "../models/Users.js"
 import bcrypt from "bcrypt"
+import jwt from "jsonwebtoken"
 
 // Register
 
@@ -35,6 +36,7 @@ const loginUser = async (req, res) => {
     try {
         //const { username, password } = req.body;
         const user = await Users.findOne({ username: req.body.username });
+        
 
         let isSame = false;
 
@@ -48,7 +50,12 @@ const loginUser = async (req, res) => {
         }
 
         if (isSame) {
-            res.status(200).send("You are successfully logged in.");
+            res.status(200).json({
+                succeded:true,
+                message:"You are succesfully logged in",
+                user,
+                token:createAccessToken(user._id),
+            })
         } else {
             res.status(401).json({
                 succeded: false,
@@ -61,6 +68,12 @@ const loginUser = async (req, res) => {
             error,
         });
     }
+}
+
+const createAccessToken = (userId) => {
+    return jwt.sign({userId},process.env.ACCESS_TOKEN_SECRET,{
+        expiresIn:"20m"
+    })
 }
 
 export { createUser, loginUser };

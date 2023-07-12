@@ -1,19 +1,32 @@
 import React from 'react'
 import { Link } from "react-router-dom"
-
+import { loginUser } from '../../api';
 import styles from "./index.module.css"
 import { Button, Form, Input } from 'antd';
-const onFinish = (values) => {
-    console.log('Success:', values);
-};
-const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo);
-};
+import Home from '../Home';
+
+
+import { useAuth } from '../../contexts/authContext.jsx';
+
 
 
 const Login = () => {
+
+    const { login } = useAuth();
+    const { isLoggedIn,user} = useAuth();
+    console.log("isLoggedIn:",isLoggedIn);
+
+    const onFinish = async (values) => {
+        const loginValues = await loginUser({username:values.username,password:values.password});
+        login(loginValues);
+        // console.log('Success:', values);
+    };
+    const onFinishFailed = (errorInfo) => {
+        console.log('Failed:', errorInfo);
+    };
+
     return (
-        <div className={styles.loginpage}>
+        isLoggedIn ? <div>{user.username}</div>: <div className={styles.loginpage}>
             <div className={styles.loginpagebg}>
             </div>
             <div className={styles.loginpagecontent}>
@@ -34,13 +47,12 @@ const Login = () => {
                         <h2>Login</h2>
                         <Form.Item
                             className={styles.emailinput}
-                            label="E-mail"
-                            name={"email"}
+                            label="Username"
+                            name={"username"}
                             rules={[
                                 {
                                     required: true,
-                                    type: "email",
-                                    message: 'Please input your e-mail!',
+                                    message: 'Please input your username!',
                                 },
                             ]}
                         >

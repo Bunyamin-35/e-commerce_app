@@ -3,6 +3,7 @@ import styles from "./navbar.module.css"
 import logo from "../../assets/logo.png"
 
 import { NavLink, Link } from "react-router-dom"
+import { useAuth } from '../../contexts/authContext'
 
 
 import { Badge } from 'antd';
@@ -10,12 +11,14 @@ import { Badge } from 'antd';
 import {
   HomeOutlined,
   LoginOutlined,
+  LogoutOutlined,
   ShoppingCartOutlined,
   SearchOutlined,
   ShoppingOutlined
 } from '@ant-design/icons';
 
 const Navbar = () => {
+  const {isLoggedIn} = useAuth();
 
 
   return (
@@ -36,10 +39,14 @@ const Navbar = () => {
           <ShoppingOutlined />
           <div>Orders</div>
         </NavLink>
-        <NavLink to="/login" className={styles.sign_in}>
+        {isLoggedIn ? <NavLink to="/login" className={styles.sign_in}>
+          <LogoutOutlined />
+          <div>Sign Out</div>
+        </NavLink> :<NavLink to="/login" className={styles.sign_in}>
           <LoginOutlined />
           <div>Sign In</div>
-        </NavLink>
+        </NavLink> }
+        
         <Badge count={5} offset={[-30, -4]}>
           <NavLink to="/cart" className={styles.cart}>
             <ShoppingCartOutlined />

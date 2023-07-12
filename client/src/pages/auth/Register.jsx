@@ -12,12 +12,15 @@ import { registerUser } from '../../api';
 
 const Register = () => {
 
+
+
+
   const [error, setError] = useState("");
 
   const onFinish = async (values) => {
     try {
       const registerValues = await registerUser({ username: values.username, email: values.email, password: values.password });
-      console.log(registerValues);
+      //console.log(registerValues);
     } catch (error) {
       setError(error.response.data.message);
     }
@@ -26,6 +29,7 @@ const Register = () => {
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
   };
+
 
   return (
     <div className={styles.loginpage}>
