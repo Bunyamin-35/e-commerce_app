@@ -1,32 +1,31 @@
-import React from 'react'
-import { Link } from "react-router-dom"
-import { loginUser } from '../../api';
+import { useState } from 'react'
+import { Link, useNavigate } from "react-router-dom"
+import { loginUser } from '../../api.jsx';
 import styles from "./index.module.css"
 import { Button, Form, Input } from 'antd';
-import Home from '../Home';
+
 
 
 import { useAuth } from '../../contexts/authContext.jsx';
 
-
-
 const Login = () => {
-
     const { login } = useAuth();
-    const { isLoggedIn,user} = useAuth();
-    console.log("isLoggedIn:",isLoggedIn);
+
+    const navigate = useNavigate();
+
 
     const onFinish = async (values) => {
-        const loginValues = await loginUser({username:values.username,password:values.password});
+        const loginValues = await loginUser(values);
+        console.log("login values::",loginValues)
         login(loginValues);
-        // console.log('Success:', values);
+        navigate('/');
     };
     const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
     };
 
     return (
-        isLoggedIn ? <div>{user.username}</div>: <div className={styles.loginpage}>
+        <div className={styles.loginpage}>
             <div className={styles.loginpagebg}>
             </div>
             <div className={styles.loginpagecontent}>
@@ -80,8 +79,8 @@ const Login = () => {
                         <Form.Item className={styles.isMember}>
                             Not a member?
 
-                            <Link to="/register" className={styles.btn} >
-                                Log In
+                            <Link to="/register" >
+                                Sign Up
                             </Link>
                         </Form.Item>
                     </Form>

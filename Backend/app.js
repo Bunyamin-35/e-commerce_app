@@ -15,7 +15,7 @@ dotenv.config();
 connection();
 
 const app = express();
-const port = process.env.PORT;
+
 
 //middlewares
 
@@ -30,7 +30,7 @@ app.use("/backend/orders",orderRoute);
 app.use("/backend/auth",authRoute);
 
 
-
+const port = process.env.PORT;
 app.listen(port,()=>{
     console.log(`Server is up on : ${port}`);
 })

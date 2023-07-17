@@ -1,7 +1,9 @@
 import Users from "../models/Users.js"
 import bcrypt from "bcrypt"
-import jwt from "jsonwebtoken"
 
+import {
+    createAccessToken,
+} from "../middlewares/authMiddleware.js"
 // Register
 
 const createUser = async (req, res) => {
@@ -11,8 +13,8 @@ const createUser = async (req, res) => {
         console.log("isExist", isExist);
         if (isExist) {
             res.status(401).json({
-                succeded:false,
-                message:"The username is already used."
+                succeded: false,
+                message: "The username is already used."
             })
         } else {
             const newUser = await Users.create(req.body);
@@ -31,12 +33,13 @@ const createUser = async (req, res) => {
         });
     }
 }
+
 // Login
 const loginUser = async (req, res) => {
     try {
         //const { username, password } = req.body;
         const user = await Users.findOne({ username: req.body.username });
-        
+
 
         let isSame = false;
 
@@ -48,14 +51,16 @@ const loginUser = async (req, res) => {
                 error: "There is no such a user."
             });
         }
-
         if (isSame) {
+            const accesstoken = createAccessToken(user._id);
+            
             res.status(200).json({
-                succeded:true,
-                message:"You are succesfully logged in",
+                succeded: true,
+                message: "You are succesfully logged in",
                 user,
-                token:createAccessToken(user._id),
+                accesstoken
             })
+
         } else {
             res.status(401).json({
                 succeded: false,
@@ -70,10 +75,6 @@ const loginUser = async (req, res) => {
     }
 }
 
-const createAccessToken = (userId) => {
-    return jwt.sign({userId},process.env.ACCESS_TOKEN_SECRET,{
-        expiresIn:"20m"
-    })
-}
+
 
 export { createUser, loginUser };

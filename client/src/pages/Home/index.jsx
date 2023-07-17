@@ -10,7 +10,6 @@ import { fetchProducts } from '../../api.jsx';
 const Home = () => {
     const { isLoading, error, data } = useQuery('products',fetchProducts
     )
-
     if (isLoading) return 'Loading...'
 
     if (error) return 'An error has occurred: ' + error.message;

@@ -1,25 +1,25 @@
 import axios from "axios"
 
 export const fetchProducts = async () => {
-    const {data} = await axios.get("http://localhost:4000/backend/products/all-products");
+    const { data } = await axios.get(`${process.env.REACT_APP_BASE_ENDPOINT}/products/all-products`);
 
     return data;
 }
 
 export const fetchProduct = async (product_id) => {
-    const {data} = await axios.get(`http://localhost:4000/backend/products/${product_id}`);
+    const { data } = await axios.get(`${process.env.REACT_APP_BASE_ENDPOINT}/products/${product_id}`);
 
     return data;
 }
 
 export const registerUser = async (input) => {
-    const {data} = await axios.post("http://localhost:4000/backend/auth/register",input);
+    const { data } = await axios.post(`${process.env.REACT_APP_BASE_ENDPOINT}/auth/register`, input);
 
     return data;
 }
 
 export const loginUser = async (input) => {
-    const {data} = await axios.post("http://localhost:4000/backend/auth/login",input);
+    const { data } = await axios.post(`${process.env.REACT_APP_BASE_ENDPOINT}/auth/login`, input);
 
     return data;
 }
