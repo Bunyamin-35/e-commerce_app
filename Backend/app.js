@@ -10,27 +10,33 @@ import orderRoute from "./routes/orderRoute.js"
 import authRoute from "./routes/authRoute.js"
 
 dotenv.config();
-
+const port = process.env.PORT;
 //Connection to the DB
 connection();
 
 const app = express();
 
+app.listen(port, () => {
+    console.log(`Server is up on : ${port}`);
+})
 
 //middlewares
-
+app.use(
+    cors({
+        origin: [`http://localhost:3000`],
+        methods: ["GET", "POST", "PUT", "DELETE"],
+        credentials: true,
+    })
+);
 app.use(express.json());
-app.use(cors());
+
 
 //Routes
 
-app.use("/backend/categories",categoryRoute);
-app.use("/backend/products",productRoute);
-app.use("/backend/orders",orderRoute);
-app.use("/backend/auth",authRoute);
+app.use("/backend/categories", categoryRoute);
+app.use("/backend/products", productRoute);
+app.use("/backend/orders", orderRoute);
+app.use("/backend/auth", authRoute);
 
 
-const port = process.env.PORT;
-app.listen(port,()=>{
-    console.log(`Server is up on : ${port}`);
-})
+

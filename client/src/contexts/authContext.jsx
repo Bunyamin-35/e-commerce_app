@@ -7,22 +7,21 @@ const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     console.log(isLoggedIn);
-    useEffect(() => {
-        const user = JSON.parse(localStorage.getItem('user') ?? '{}')
-        if (user?.
-            ) {
-            setIsLoggedIn(true)
-            console.log(isLoggedIn);
-        }
-        else if (Object.keys(user).length === 0) {
-            setIsLoggedIn(false)
-        }
-    }, [])
+    // useEffect(() => {
+    //     const user = JSON.parse(localStorage.getItem('user') ?? '{}')
+    //     if (user) {
+    //         setIsLoggedIn(true)
+    //         console.log(isLoggedIn);
+    //     }
+    //     else if (Object.keys(user).length === 0) {
+    //         setIsLoggedIn(false)
+    //     }
+    // }, [])
     const login = (data) => {
         setIsLoggedIn(true);
         setUser(data);
         console.log("the data", data);
-        localStorage.setItem("user", JSON.stringify(data))
+        localStorage.setItem("access-token", JSON.stringify(data.accesstoken));
     }
     const values = {
         isLoggedIn,

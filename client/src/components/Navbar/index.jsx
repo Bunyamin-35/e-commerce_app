@@ -14,11 +14,12 @@ import {
   LogoutOutlined,
   ShoppingCartOutlined,
   SearchOutlined,
-  ShoppingOutlined
+  ShoppingOutlined,
+  UserOutlined
 } from '@ant-design/icons';
 
 const Navbar = () => {
-  const {isLoggedIn} = useAuth();
+  const { isLoggedIn } = useAuth();
 
 
   return (
@@ -39,14 +40,20 @@ const Navbar = () => {
           <ShoppingOutlined />
           <div>Orders</div>
         </NavLink>
-        {isLoggedIn ? <NavLink to="/login" className={styles.sign_in}>
-          <LogoutOutlined />
-          <div>Sign Out</div>
-        </NavLink> :<NavLink to="/login" className={styles.sign_in}>
-          <LoginOutlined />
-          <div>Sign In</div>
-        </NavLink> }
-        
+        {isLoggedIn ?
+          <>
+            <NavLink to="/dashboard" className={styles.sign_in}>
+              <UserOutlined />
+              <div>Dashboard</div>
+            </NavLink> <NavLink to="/login" className={styles.sign_in}>
+              <LogoutOutlined />
+              <div>Sign Out</div>
+            </NavLink>
+          </> : <NavLink to="/login" className={styles.sign_in}>
+            <LoginOutlined />
+            <div>Sign In</div>
+          </NavLink>}
+
         <Badge count={5} offset={[-30, -4]}>
           <NavLink to="/cart" className={styles.cart}>
             <ShoppingCartOutlined />
