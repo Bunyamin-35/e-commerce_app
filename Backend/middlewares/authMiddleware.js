@@ -8,7 +8,8 @@ const createAccessToken = (userId) => {
     return accesstoken
 }
 const verifyAccessToken = async (req, res) => {
-    const accesstoken = req.headers["authorization"] && req.headers["authorization"].split(' ')[1]
+    // const accesstoken = req.headers["authorization"] && req.headers["authorization"].split(' ')[1]
+    const accesstoken = req.cookies.accesstoken
     console.log("the access token", accesstoken);
 
     if (!accesstoken) {
@@ -27,7 +28,7 @@ const verifyAccessToken = async (req, res) => {
             })
         } else {
             const user = await User.findById(data.userId)
-            if (user) return res.json({ user })
+            if (user) return res.json({ status: true, user: user.email })
             else return res.json({ status: false })
         }
     })

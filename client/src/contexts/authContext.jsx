@@ -20,7 +20,7 @@ const AuthProvider = ({ children }) => {
     const login = (data) => {
         setIsLoggedIn(true);
         setUser(data);
-        console.log("the data", data);
+        //console.log("the data", data);
         localStorage.setItem("access-token", JSON.stringify(data.accesstoken));
     }
     const values = {

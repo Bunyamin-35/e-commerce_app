@@ -6,7 +6,7 @@ import {
 } from "../middlewares/authMiddleware.js"
 // Register
 
-const createUser = async (req, res) => {
+const createUser = async (req, res, next) => {
     try {
         let isExist = false;
         isExist = await Users.findOne({ username: req.body.username });
@@ -35,7 +35,7 @@ const createUser = async (req, res) => {
 }
 
 // Login
-const loginUser = async (req, res) => {
+const loginUser = async (req, res, next) => {
     try {
         //const { username, password } = req.body;
         const user = await Users.findOne({ username: req.body.username });
@@ -53,20 +53,22 @@ const loginUser = async (req, res) => {
         }
         if (isSame) {
             const accesstoken = createAccessToken(user._id);
-            
+            res.cookie("accesstoken", accesstoken, {
+                withCredentials: true,
+                httpOnly: false,
+            });
+
             res.status(200).json({
                 succeded: true,
                 message: "You are succesfully logged in",
                 user,
-                accesstoken
-            })
-
+            });           
         } else {
             res.status(401).json({
                 succeded: false,
                 error: "Passwords are not matched."
             });
-        }
+        } next();
     } catch (error) {
         res.status(500).json({
             succeded: false,

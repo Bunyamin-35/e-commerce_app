@@ -3,22 +3,50 @@ import { Link, useNavigate } from "react-router-dom"
 import { loginUser } from '../../api.jsx';
 import styles from "./index.module.css"
 import { Button, Form, Input } from 'antd';
+import axios from 'axios';
 
 
 
-import { useAuth } from '../../contexts/authContext.jsx';
+//import { useAuth } from '../../contexts/authContext.jsx';
 
 const Login = () => {
-    const { login } = useAuth();
+    //const { login } = useAuth();
 
     const navigate = useNavigate();
 
 
     const onFinish = async (values) => {
-        const loginValues = await loginUser(values);
-        console.log("login values::",loginValues)
-        login(loginValues);
-        navigate('/');
+        console.log(values);
+        try {
+            const { data } = await axios.post(
+                "http://localhost:4000/backend/auth/login",
+                {
+                    ...values,
+                },
+                { withCredentials: true }
+            );
+            console.log(data);
+            const { succeded, message } = data;
+                
+            console.log("success:",succeded);
+            console.log("message:",message);
+
+        } catch (error) {
+
+        }
+        //const loginValues = await loginUser(values);
+        //console.log("login values::", loginValues)
+        // const { succeded, message } = loginValues
+        // login(loginValues);
+        // if (succeded) {
+        //     setTimeout(() => {
+        //         navigate("/");
+        //     }, 1000);
+        // } else {
+        //     alert(message);
+        //     navigate('/login');
+        // }
+
     };
     const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);

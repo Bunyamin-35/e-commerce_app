@@ -1,7 +1,13 @@
 import express from "express"
+
 import dotenv from "dotenv"
+
 import cors from "cors"
+
 import connection from "./db.js";
+
+import cookieParser from "cookie-parser";
+
 
 // Routes
 import categoryRoute from "./routes/categoryRoute.js"
@@ -9,15 +15,14 @@ import productRoute from "./routes/productRoute.js"
 import orderRoute from "./routes/orderRoute.js"
 import authRoute from "./routes/authRoute.js"
 
+const app = express();
 dotenv.config();
-const port = process.env.PORT;
+
 //Connection to the DB
 connection();
 
-const app = express();
-
-app.listen(port, () => {
-    console.log(`Server is up on : ${port}`);
+app.listen(process.env.PORT, () => {
+    console.log(`Server is up on : ${process.env.PORT}`);
 })
 
 //middlewares
@@ -28,6 +33,8 @@ app.use(
         credentials: true,
     })
 );
+app.use(cookieParser());
+
 app.use(express.json());
 
 

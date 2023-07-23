@@ -59,7 +59,7 @@ const Navbar = () => {
             <ShoppingCartOutlined />
             <div>Cart</div>
           </NavLink>
-        </Badge>
+        </Badge>  
       </div>
     </div >
   )
