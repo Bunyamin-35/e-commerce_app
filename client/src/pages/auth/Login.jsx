@@ -1,20 +1,17 @@
-import { useState } from 'react'
+//import { useState } from 'react'
 import { Link, useNavigate } from "react-router-dom"
-import { loginUser } from '../../api.jsx';
+//import { loginUser } from '../../api.jsx';
 import styles from "./index.module.css"
 import { Button, Form, Input } from 'antd';
 import axios from 'axios';
 
 
 
-//import { useAuth } from '../../contexts/authContext.jsx';
+import { useAuth } from '../../contexts/authContext.jsx';
 
 const Login = () => {
-    //const { login } = useAuth();
-
+    const { login } = useAuth();
     const navigate = useNavigate();
-
-
     const onFinish = async (values) => {
         console.log(values);
         try {
@@ -27,12 +24,18 @@ const Login = () => {
             );
             console.log(data);
             const { succeded, message } = data;
-                
-            console.log("success:",succeded);
-            console.log("message:",message);
 
+            if (succeded) {
+                login(data)
+                alert(message);
+                setTimeout(() => {
+                    navigate("/")
+                }, 1000)
+            } else {
+                alert("there is an error!!")
+            }
         } catch (error) {
-
+            console.log(error);
         }
         //const loginValues = await loginUser(values);
         //console.log("login values::", loginValues)

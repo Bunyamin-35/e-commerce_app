@@ -12,34 +12,39 @@ import { useCookies } from "react-cookie";
 import axios from "axios";
 
 
-const Home = () => {
 
+
+const Home = () => {
     const navigate = useNavigate();
     const [cookies, removeCookie] = useCookies([]);
     const [username, setUsername] = useState("");
 
-    useEffect(()=>{
+    useEffect(() => {
         const verifyToken = async () => {
-            if(!cookies.accesstoken) {
+            if (!cookies.accesstoken) {
                 navigate("/login")
             }
-            const {data} = await axios.post(
+            const { data } = await axios.post(
                 "http://localhost:4000/backend/auth/",
                 {},
-                {withCredentials:true}
+                { withCredentials: true }
             );
-            const {status,user} = data;
+            const { status, user } = data;
             setUsername(user);
-            return status ? alert(`Hello ${user}`):(removeCookie("accesstoken"),navigate("/login"))
+            return status ? alert(`Hello ${username}`) : (removeCookie("accesstoken"), navigate("/login"))
         };
         verifyToken();
-    },[cookies, navigate, removeCookie])
+    }, [cookies, navigate, removeCookie]);
 
     const { isLoading, error, data } = useQuery('products', fetchProducts
     )
     if (isLoading) return 'Loading...'
 
     if (error) return 'An error has occurred: ' + error.message;
+
+    
+
+    
 
     return (
         <div className='homepage'>

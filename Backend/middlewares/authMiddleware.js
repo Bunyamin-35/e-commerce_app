@@ -3,14 +3,13 @@ import User from "../models/Users.js"
 
 const createAccessToken = (userId) => {
     const accesstoken = jwt.sign({ userId }, process.env.ACCESS_TOKEN_SECRET, {
-        expiresIn: "60s"
+        expiresIn: "20s"
     })
     return accesstoken
 }
 const verifyAccessToken = async (req, res) => {
     // const accesstoken = req.headers["authorization"] && req.headers["authorization"].split(' ')[1]
     const accesstoken = req.cookies.accesstoken
-    console.log("the access token", accesstoken);
 
     if (!accesstoken) {
         res.status(401).json({
@@ -20,7 +19,6 @@ const verifyAccessToken = async (req, res) => {
     }
 
     jwt.verify(accesstoken, process.env.ACCESS_TOKEN_SECRET, async (err, data) => {
-        console.log(data);
         if (err) {
             return res.json({
                 status: false,

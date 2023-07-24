@@ -1,12 +1,39 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
 import axios from "axios";
 
+import { useEffect } from "react"
 import Navbar from "../../components/Navbar/index.jsx"
 
 const Dahsboard = () => {
-    const [username, setUsername] = useState("");
     const navigate = useNavigate();
+    const [username, setUsername] = useState("");
+
+    const [cookies, removeCookie] = useCookies([]);
+
+    useEffect(() => {
+        const isTokenExist = async () => {
+            if (!cookies.accesstoken) {
+                alert("kadfndkljnf")
+                navigate("/login")
+            }
+            console.log("the cookie", cookies.accesstoken);
+            const { data } = await axios.post(
+                "http://localhost:4000/backend/auth/",
+                {},
+                { withCredentials: true }
+            );
+            const { status, user } = data;
+            setUsername(user);
+            return status ? alert(`Hello ${username}`) : (removeCookie("accesstoken"), navigate("/login"))
+        };
+        isTokenExist();
+    }, [cookies, navigate]);
+
+
+
+
     // useEffect(() => {
     //     // Sayfa yüklendiğinde, localStorage'dan token'ı alırız.
     //     const accesstoken = localStorage.getItem('access-token')
@@ -46,7 +73,6 @@ const Dahsboard = () => {
                 <div className="left_bar">
                     <div className="user_info">
                         <h2>User Info</h2>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci quae nesciunt quaerat dolorem quibusdam suscipit. Ea voluptate neque iusto numquam?
                     </div>
                     <div className="order_info">
                         <h2>Order Info</h2>
