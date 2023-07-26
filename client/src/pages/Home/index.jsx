@@ -15,26 +15,26 @@ import axios from "axios";
 
 
 const Home = () => {
-    const navigate = useNavigate();
-    const [cookies, removeCookie] = useCookies([]);
-    const [username, setUsername] = useState("");
+    // const navigate = useNavigate();
+    // const [cookies, removeCookie] = useCookies([]);
+    // const [username, setUsername] = useState("");
 
-    useEffect(() => {
-        const verifyToken = async () => {
-            if (!cookies.accesstoken) {
-                navigate("/login")
-            }
-            const { data } = await axios.post(
-                "http://localhost:4000/backend/auth/",
-                {},
-                { withCredentials: true }
-            );
-            const { status, user } = data;
-            setUsername(user);
-            return status ? alert(`Hello ${username}`) : (removeCookie("accesstoken"), navigate("/login"))
-        };
-        verifyToken();
-    }, [cookies, navigate, removeCookie]);
+    // useEffect(() => {
+    //     const verifyToken = async () => {
+    //         if (!cookies.accesstoken) {
+    //             navigate("/login")
+    //         }
+    //         const { data } = await axios.post(
+    //             "http://localhost:4000/backend/auth/",
+    //             {},
+    //             { withCredentials: true }
+    //         );
+    //         const { status, user } = data;
+    //         setUsername(user);
+    //         return status ? console.log(`Hello ${username}`) : (removeCookie("accesstoken"), navigate("/login"))
+    //     };
+    //     verifyToken();
+    // }, [cookies, navigate, removeCookie]);
 
     const { isLoading, error, data } = useQuery('products', fetchProducts
     )

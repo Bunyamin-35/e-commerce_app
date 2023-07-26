@@ -15,57 +15,21 @@ const Dahsboard = () => {
     useEffect(() => {
         const isTokenExist = async () => {
             if (!cookies.accesstoken) {
-                alert("kadfndkljnf")
                 navigate("/login")
             }
-            console.log("the cookie", cookies.accesstoken);
             const { data } = await axios.post(
                 "http://localhost:4000/backend/auth/",
                 {},
                 { withCredentials: true }
             );
             const { status, user } = data;
+            console.log(user);
             setUsername(user);
-            return status ? alert(`Hello ${username}`) : (removeCookie("accesstoken"), navigate("/login"))
+            return status ? console.log(`Hello ${user}`) : (removeCookie("accesstoken"), navigate("/login"))
         };
         isTokenExist();
-    }, [cookies, navigate]);
+    }, [cookies, navigate,removeCookie]);
 
-
-
-
-    // useEffect(() => {
-    //     // Sayfa yüklendiğinde, localStorage'dan token'ı alırız.
-    //     const accesstoken = localStorage.getItem('access-token')
-    //     console.log(accesstoken);
-    //     // Eğer localStorage'da "token" yoksa, kullanıcıyı login sayfasına yönlendiririz.
-    //     if (!accesstoken) {
-    //         navigate("/login");
-    //     } else {
-    //         // localStorage'dan alınan token ile sunucuya bir istek yaparak kullanıcının adını alırız.
-    //         axios
-    //             .post("http://localhost:4000/backend/auth/", {}, { withCredentials: true })
-    //             .then((response) => {
-    //                 const { status, user } = response.data;
-
-    //                 // Sunucudan dönülen status true ise, kullanıcı adını state'e ekleriz.
-
-    //                 if (status) {
-    //                     setUsername(user);
-    //                 } else {
-    //                     // Sunucudan dönülen status false ise, kullanıcının token'i geçersiz demektir.
-    //                     // Bu durumda, localStorage'dan "token"i kaldırırız ve kullanıcıyı login sayfasına yönlendiririz.
-    //                     localStorage.removeItem("token");
-    //                     navigate("/login");
-    //                 }
-    //             })
-    //             .catch((error) => {
-    //                 console.error("Error fetching user data: ", error);
-    //                 // Sunucudan dönülen hata durumunda da kullanıcıyı login sayfasına yönlendiririz.
-    //                 navigate("/login");
-    //             });
-    //     }
-    // }, [navigate]);
     return (
         <>
             <Navbar />
@@ -73,6 +37,7 @@ const Dahsboard = () => {
                 <div className="left_bar">
                     <div className="user_info">
                         <h2>User Info</h2>
+                        <span>{username}</span>
                     </div>
                     <div className="order_info">
                         <h2>Order Info</h2>

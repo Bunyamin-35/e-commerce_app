@@ -1,6 +1,6 @@
 //import { useState } from 'react'
 import { Link, useNavigate } from "react-router-dom"
-//import { loginUser } from '../../api.jsx';
+import { loginUser } from '../../api.jsx';
 import styles from "./index.module.css"
 import { Button, Form, Input } from 'antd';
 import axios from 'axios';
@@ -10,46 +10,25 @@ import axios from 'axios';
 import { useAuth } from '../../contexts/authContext.jsx';
 
 const Login = () => {
-    const { login } = useAuth();
+    const { login, isLoggedIn} = useAuth();
     const navigate = useNavigate();
     const onFinish = async (values) => {
         console.log(values);
         try {
-            const { data } = await axios.post(
-                "http://localhost:4000/backend/auth/login",
-                {
-                    ...values,
-                },
-                { withCredentials: true }
-            );
-            console.log(data);
-            const { succeded, message } = data;
+            const response = await loginUser(values);
 
-            if (succeded) {
-                login(data)
-                alert(message);
+            if (response.succeded) {
+                login(response)
                 setTimeout(() => {
-                    navigate("/")
+                    navigate("/dashboard")
                 }, 1000)
             } else {
-                alert("there is an error!!")
+                alert("there is an error!!");
+                navigate("/")
             }
         } catch (error) {
             console.log(error);
         }
-        //const loginValues = await loginUser(values);
-        //console.log("login values::", loginValues)
-        // const { succeded, message } = loginValues
-        // login(loginValues);
-        // if (succeded) {
-        //     setTimeout(() => {
-        //         navigate("/");
-        //     }, 1000);
-        // } else {
-        //     alert(message);
-        //     navigate('/login');
-        // }
-
     };
     const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);

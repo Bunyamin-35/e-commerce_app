@@ -73,6 +73,7 @@ const loginUser = async (req, res, next) => {
         res.status(500).json({
             succeded: false,
             error,
+            message:"heeee"
         });
     }
 }

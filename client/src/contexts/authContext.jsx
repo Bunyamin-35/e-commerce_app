@@ -1,28 +1,34 @@
 import { useState, createContext, useContext, useEffect } from "react";
 //import { fetchMe } from "../api.jsx";
+import { useCookies } from "react-cookie";
+import { useNavigate } from "react-router-dom";
 
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
+    const navigate = useNavigate();
+
     const [user, setUser] = useState(null);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    console.log(isLoggedIn);
+    const [cookies, removeCookie] = useCookies([]);
     useEffect(() => {
-        const token = JSON.parse(localStorage.getItem('accesstoken') ?? '{}')
-        if (token) {
-            setIsLoggedIn(true)
-            console.log(isLoggedIn);
-        }
-        else if (Object.keys(user).length === 0) {
-            setIsLoggedIn(false)
-        }
-    }, [])
+        const verifyToken = async () => {
+            const token = cookies.accesstoken;
+            if (!Object.values(token) === "undefined") {
+                setIsLoggedIn(true);
+            }
+        };
+
+        verifyToken();
+        console.log("isloggedin:", isLoggedIn);
+    }, [cookies.accesstoken]);
+
     const login = (data) => {
         setIsLoggedIn(true);
         setUser(data);
-        //console.log("the data", data);
-        localStorage.setItem("access-token", JSON.stringify(data.accesstoken));
     }
+    console.log("isloggedin:", isLoggedIn);
+
     const values = {
         isLoggedIn,
         user,

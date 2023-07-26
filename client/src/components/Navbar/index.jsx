@@ -20,8 +20,7 @@ import {
 
 const Navbar = () => {
   const { isLoggedIn } = useAuth();
-
-
+  
   return (
     <div className={styles.navbar}>
       <Link to="/" className={styles.logo}>
