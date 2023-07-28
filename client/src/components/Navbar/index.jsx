@@ -4,6 +4,7 @@ import logo from "../../assets/logo.png"
 
 import { NavLink, Link } from "react-router-dom"
 import { useAuth } from '../../contexts/authContext'
+import { useCookies } from 'react-cookie'
 
 
 import { Badge } from 'antd';
@@ -19,8 +20,17 @@ import {
 } from '@ant-design/icons';
 
 const Navbar = () => {
-  const { isLoggedIn } = useAuth();
-  
+  const { isLoggedIn, setIsLoggedIn} = useAuth();
+  const [cookies, removeCookie] = useCookies([]);
+
+
+  const handleLogout = () => {
+    if (cookies.accesstoken) {
+      removeCookie("accesstoken");
+      setIsLoggedIn(false);
+      console.log("Logout process is carried out!");
+    }
+  }
   return (
     <div className={styles.navbar}>
       <Link to="/" className={styles.logo}>
@@ -44,7 +54,8 @@ const Navbar = () => {
             <NavLink to="/dashboard" className={styles.sign_in}>
               <UserOutlined />
               <div>Dashboard</div>
-            </NavLink> <NavLink to="/login" className={styles.sign_in}>
+            </NavLink>
+            <NavLink to="/login" className={styles.sign_in} onClick={handleLogout}>
               <LogoutOutlined />
               <div>Sign Out</div>
             </NavLink>
@@ -58,7 +69,7 @@ const Navbar = () => {
             <ShoppingCartOutlined />
             <div>Cart</div>
           </NavLink>
-        </Badge>  
+        </Badge>
       </div>
     </div >
   )

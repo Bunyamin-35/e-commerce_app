@@ -3,7 +3,7 @@ import User from "../models/Users.js"
 
 const createAccessToken = (userId) => {
     const accesstoken = jwt.sign({ userId }, process.env.ACCESS_TOKEN_SECRET, {
-        expiresIn: "60s"
+        expiresIn: "15s"
     })
     return accesstoken
 }

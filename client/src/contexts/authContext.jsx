@@ -18,7 +18,6 @@ const AuthProvider = ({ children }) => {
                 setIsLoggedIn(true);
             }
         };
-
         verifyToken();
         console.log("isloggedin:", isLoggedIn);
     }, [cookies.accesstoken]);
@@ -33,6 +32,7 @@ const AuthProvider = ({ children }) => {
         isLoggedIn,
         user,
         login,
+        setIsLoggedIn,
     }
 
     return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>
