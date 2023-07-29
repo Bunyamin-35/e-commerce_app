@@ -1,5 +1,5 @@
 import React from 'react'
-// import { Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { useState } from 'react';
 
 import styles from "./index.module.css"
@@ -11,16 +11,20 @@ import { registerUser } from '../../api';
 
 
 const Register = () => {
-
-
-
-
+  const navigate = useNavigate();
   const [error, setError] = useState("");
+
+
 
   const onFinish = async (values) => {
     try {
-      const registerValues = await registerUser({ username: values.username, email: values.email, password: values.password });
-      //console.log(registerValues);
+      const response = await registerUser(values);
+      console.log(response);
+      if (response.succeded) {
+        setTimeout(() => {
+          navigate("/login")
+        }, 1000)
+      }
     } catch (error) {
       setError(error.response.data.message);
     }

@@ -19,7 +19,10 @@ export const registerUser = async (input) => {
 }
 
 export const loginUser = async (values) => {
-    const { data } = await axios.post(`${process.env.REACT_APP_BASE_ENDPOINT}/auth/login`, {...values},{withCredentials:true});
+    const { data } = await axios.post(`${process.env.REACT_APP_BASE_ENDPOINT}/auth/login`,
+        { ...values },
+        { withCredentials: true }
+    );
 
     return data;
 }

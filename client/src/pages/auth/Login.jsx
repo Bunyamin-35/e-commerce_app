@@ -3,17 +3,16 @@ import { Link, useNavigate } from "react-router-dom"
 import { loginUser } from '../../api.jsx';
 import styles from "./index.module.css"
 import { Button, Form, Input } from 'antd';
-import axios from 'axios';
-
 
 
 import { useAuth } from '../../contexts/authContext.jsx';
 
 const Login = () => {
-    const { login, isLoggedIn} = useAuth();
+
+    const { login } = useAuth();
     const navigate = useNavigate();
+
     const onFinish = async (values) => {
-        console.log(values);
         try {
             const response = await loginUser(values);
 
@@ -24,7 +23,7 @@ const Login = () => {
                 }, 1000)
             } else {
                 alert("there is an error!!");
-                navigate("/")
+                navigate("/login")
             }
         } catch (error) {
             console.log(error);
@@ -96,6 +95,7 @@ const Login = () => {
                     </Form>
                 </div>
             </div>
+
         </div>
     )
 }
