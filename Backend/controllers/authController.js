@@ -21,6 +21,7 @@ const createUser = async (req, res, next) => {
             res.status(201).json(
                 {
                     succeded: true,
+                    message:"Register process completed successfully",
                     newUser,
                 }
             );

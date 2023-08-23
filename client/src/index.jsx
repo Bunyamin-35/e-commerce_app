@@ -6,6 +6,9 @@ import { AuthProvider } from './contexts/authContext.jsx';
 import { BrowserRouter } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
+import { Provider } from 'react-redux';
+import store from './redux/store';
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -17,7 +20,7 @@ const queryClient = new QueryClient({
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <>
+  <Provider store={store}>
     <BrowserRouter>
       <QueryClientProvider client={queryClient}>
         <ReactQueryDevtools initialIsOpen={false} />
@@ -26,6 +29,6 @@ root.render(
         </AuthProvider>
       </QueryClientProvider>
     </BrowserRouter>
-  </>
+  </Provider>
 );
 
