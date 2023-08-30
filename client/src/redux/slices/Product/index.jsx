@@ -1,18 +1,14 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-//import { fetchProducts } from "../../api";
+import { fetchProducts } from "../../../api";
 import axios from "axios"
 
 
 const initialState = {
-    products: [],
+    products: [],   
     status: "idle",
 }
 
-export const fetchProductList = createAsyncThunk('/products/fetchProductList', async () => {
-    return await axios.get("http://localhost:4000/backend/products/all-products")
-        .then((response) => response.data)
-
-})
+export const fetchProductList = createAsyncThunk('/products/fetchProductList',fetchProducts)
 const productSlice = createSlice({
     name: "products",
     initialState,

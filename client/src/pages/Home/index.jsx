@@ -11,7 +11,7 @@ import { fetchProducts } from '../../api.jsx';
 // import { useCookies } from "react-cookie";
 import axios from "axios";
 import { useSelector } from 'react-redux';
-import { fetchProductList } from '../../redux/slices/products.jsx';
+import { fetchProductList } from '../../redux/slices/Product';
 import { useDispatch } from 'react-redux';
 
 const Home = () => {
