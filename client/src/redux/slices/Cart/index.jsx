@@ -1,17 +1,16 @@
-import {createSlice} from "@reduxjs/toolkit"
+import { createSlice } from "@reduxjs/toolkit"
 const initialState = {
-    basket:JSON.parse(localStorage.getItem("basket") ?? "[]"),
-    selectedProduct:{}
+    basket: JSON.parse(localStorage.getItem("basket") ?? "[]"),
+    selectedProduct: {}
 }
 const cartSlice = createSlice({
-    name:"cart",
+    name: "cart",
     initialState,
     reducers: {
-        handleAddtoCart : (state,action) => {
+        handleAddtoCart: (state, action) => {
             const temp = { ...action.payload }
-            console.log("temp:",temp.item);
-            const isExist = state.basket.find((item) => item.item._id === temp.item._id)
-            state.selectedProduct = temp.item
+            const isExist = state.basket.find((item) => item._id === temp._id)
+            state.selectedProduct = temp
             if (isExist) {
                 isExist.count += 1
                 localStorage.setItem("basket", JSON.stringify(state.basket))
@@ -20,10 +19,28 @@ const cartSlice = createSlice({
                 state.basket.push(temp)
                 localStorage.setItem("basket", JSON.stringify(state.basket))
             }
-            console.log(state.basket);  
+
+        },
+        handleIncreaseCount: (state, action) => {
+            const temp = { ...action.payload }
+            const isExist = state.basket.find((item) => item._id === temp._id)
+            state.selectedProduct = temp
+            if (isExist) {
+                isExist.count += 1
+                localStorage.setItem("basket", JSON.stringify(state.basket))
+            }
+        },
+        handleDecreaseCount: (state, action) => {
+            const temp = { ...action.payload }
+            const isExist = state.basket.find((item) => item._id === temp._id)
+            state.selectedProduct = temp
+            if (isExist) {
+                isExist.count -= 1
+                localStorage.setItem("basket", JSON.stringify(state.basket))
+            }
         }
     }
 })
 
-export const {handleAddtoCart} = cartSlice.actions;
+export const { handleAddtoCart, handleIncreaseCount, handleDecreaseCount } = cartSlice.actions;
 export default cartSlice.reducer;

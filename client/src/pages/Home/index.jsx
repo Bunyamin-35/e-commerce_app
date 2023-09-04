@@ -23,7 +23,6 @@ const Home = () => {
 
 
     const products = useSelector((state) => state.products.products)
-    console.log("product list redux", products);
 
  
     // const navigate = useNavigate();
