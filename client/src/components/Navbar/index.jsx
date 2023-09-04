@@ -18,10 +18,12 @@ import {
   ShoppingOutlined,
   UserOutlined
 } from '@ant-design/icons';
+import { useSelector } from 'react-redux'
 
 const Navbar = () => {
   const { isLoggedIn, setIsLoggedIn} = useAuth();
   const [cookies, removeCookie] = useCookies([]);
+  const basket = useSelector(state => state.cart.basket)
 
 
   const handleLogout = () => {
@@ -64,7 +66,7 @@ const Navbar = () => {
             <div>Sign In</div>
           </NavLink>}
 
-        <Badge count={5} offset={[-30, -4]}>
+        <Badge count={basket.length} offset={[-30, -4]}>
           <NavLink to="/cart" className={styles.cart}>
             <ShoppingCartOutlined />
             <div>Cart</div>

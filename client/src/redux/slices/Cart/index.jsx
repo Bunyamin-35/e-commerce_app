@@ -38,9 +38,15 @@ const cartSlice = createSlice({
                 isExist.count -= 1
                 localStorage.setItem("basket", JSON.stringify(state.basket))
             }
+        },
+        handleDeleteItem: (state, action) => {
+            const temp = { ...action.payload };
+            const updatedBasket = state.basket.filter((item) => item._id !== temp._id);
+            state.basket = updatedBasket;
+            localStorage.setItem("basket", JSON.stringify(updatedBasket));
         }
     }
 })
 
-export const { handleAddtoCart, handleIncreaseCount, handleDecreaseCount } = cartSlice.actions;
+export const { handleAddtoCart, handleIncreaseCount, handleDecreaseCount, handleDeleteItem } = cartSlice.actions;
 export default cartSlice.reducer;
