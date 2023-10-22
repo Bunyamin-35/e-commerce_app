@@ -4,6 +4,10 @@ export const fetchProducts = async () => {
     const { data } = await axios.get(`${process.env.REACT_APP_BASE_ENDPOINT}/products/all-products`);
     return data;
 }
+export const fetchUsers = async () => {
+    const {data} = await axios.get(`${process.env.REACT_APP_BASE_ENDPOINT}/auth/get-users`);
+    return data;
+}
 
 export const fetchProduct = async (product_id) => {
     const { data } = await axios.get(`${process.env.REACT_APP_BASE_ENDPOINT}/products/${product_id}`);

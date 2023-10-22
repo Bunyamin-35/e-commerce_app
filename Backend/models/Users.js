@@ -19,6 +19,10 @@ const userSchema = new Schema(
             type: String,
             required: true,
         },
+        cartItem:{
+            type:Array,
+            required:true,
+        }
     },
     {
         timestamps: true

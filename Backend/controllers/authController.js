@@ -78,7 +78,23 @@ const loginUser = async (req, res, next) => {
         });
     }
 }
+//Get all users
+const getAllUsers = async (req, res) => {
+    try {
+        const allUsers = await Users.find({});
+        res.status(201).json({
+            
+            succeded: true,
+            allUsers,
+        });
+    } catch (error) {
+        res.status(500).json({
+            succeded: false,
+            error,
+        });
+
+    }
+}
 
 
-
-export { createUser, loginUser };
+export { createUser, loginUser, getAllUsers };
