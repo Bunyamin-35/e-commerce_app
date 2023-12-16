@@ -34,3 +34,9 @@ export const token = async () => {
 
     return data;
 }
+
+export const verifyCartPage =  async (userId) => {
+    const { data } = await axios.get(`${process.env.REACT_APP_BASE_ENDPOINT}/cart/get-cart/${userId}`);
+
+    return data;
+}

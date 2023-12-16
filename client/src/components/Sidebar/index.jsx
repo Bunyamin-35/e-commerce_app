@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import logo from "../../assets/logo.png"
-const Sidebar = () => {
+const Sidebar = ({username}) => {
     return (
         <div className="min-h-screen flex flex-row">
             <div className="flex flex-col w-56 bg-white rounded-r-3xl overflow-hidden">
@@ -8,6 +8,16 @@ const Sidebar = () => {
                     <h1 className="text-3xl uppercase text-indigo-500">
                         <img src={logo} alt='logo_image' />
                     </h1>
+                </div>
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 ms-5">
+                        <img class="h-16 w-16 rounded-full" src="https://demo.themesberg.com/windster/images/users/neil-sims.png" alt="" />
+                    </div>
+                    <div class="flex-shrink-0 ms-5">
+                        <p class="text-sm font-medium text-gray-900 truncate">
+                            {username}
+                        </p>
+                    </div>
                 </div>
                 <ul className="flex flex-col py-4">
                     <li>

@@ -14,6 +14,7 @@ import categoryRoute from "./routes/categoryRoute.js"
 import productRoute from "./routes/productRoute.js"
 import orderRoute from "./routes/orderRoute.js"
 import authRoute from "./routes/authRoute.js"
+import cartRoute from "./routes/cartRoute.js"
 
 const app = express();
 dotenv.config();
@@ -44,6 +45,7 @@ app.use("/backend/categories", categoryRoute);
 app.use("/backend/products", productRoute);
 app.use("/backend/orders", orderRoute);
 app.use("/backend/auth", authRoute);
+app.use("/backend/cart",cartRoute)
 
 
 

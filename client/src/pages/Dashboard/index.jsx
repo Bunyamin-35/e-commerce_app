@@ -8,7 +8,7 @@ import Navbar from "../../components/Navbar/index.jsx"
 import Sidebar from "../../components/Sidebar/index.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllUsers } from "../../redux/slices/Users/index.jsx";
-
+import { setCurrentUser } from "../../redux/slices/CurrentUser/index.jsx";
 const Dahsboard = () => {
     const navigate = useNavigate();
     const [username, setUsername] = useState("");
@@ -32,10 +32,13 @@ const Dahsboard = () => {
             setUsername(user);
             return status ? console.log(`Hello ${user}`) : (removeCookie("accesstoken"), navigate("/login"))
         };
+        
         isTokenExist();
         dispatch(fetchAllUsers())
-    }, [cookies, navigate, removeCookie]);
-    const users = useSelector((state) => state.users.products.allUsers)
+        dispatch(setCurrentUser(username))
+    }, [cookies, navigate, removeCookie,dispatch,username]);
+    
+    const users = useSelector((state) => state.users.users.allUsers)
     console.log("users list:", users);
     return (
         <>
@@ -246,7 +249,7 @@ const Dahsboard = () => {
                         </div>
                     </aside> */}
                     <aside id="sidebar" class="fixed hidden z-20 h-full top-0 left-0 pt-16 flex lg:flex flex-shrink-0 flex-col w-64 transition-width duration-75" aria-label="Sidebar">
-                        <Sidebar />
+                        <Sidebar username={username} />
                     </aside>
                     <div class="bg-gray-900 opacity-50 hidden fixed inset-0 z-10" id="sidebarBackdrop"></div>
                     <div id="main-content" class="h-full w-full bg-gray-50 relative overflow-y-auto lg:ml-64">
@@ -436,7 +439,7 @@ const Dahsboard = () => {
                                         </div>
                                         <div class="flow-root">
                                             <ul class="divide-y divide-gray-200">
-                                                {users.map((user, key) => <li class="py-3 sm:py-4">
+                                                {users?.map((user, key) => <li class="py-3 sm:py-4">
                                                     <div class="flex items-center space-x-4">
                                                         <div class="flex-shrink-0">
                                                             <img class="h-8 w-8 rounded-full" src="https://demo.themesberg.com/windster/images/users/neil-sims.png" alt="" />
