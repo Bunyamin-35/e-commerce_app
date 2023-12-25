@@ -39,7 +39,6 @@ const Dahsboard = () => {
     }, [cookies, navigate, removeCookie,dispatch,username]);
     
     const users = useSelector((state) => state.users.users.allUsers)
-    console.log("users list:", users);
     return (
         <>
             {/* <Navbar /> */}

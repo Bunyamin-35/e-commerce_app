@@ -11,12 +11,22 @@ const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [cookies, removeCookie] = useCookies([]);
+    const [theCurrentUserId,setTheCurrentUserId] = useState("")
     useEffect(() => {
         const verifyToken = async () => {
             const token = cookies.accesstoken;
+            const parseJwt = (token) => {
+                try {
+                    return JSON.parse(atob(token.split('.')[1]));
+                } catch (e) {
+                    return null;
+                }
+            };
 
+            setTheCurrentUserId(parseJwt(token).userId)
+            
             const basket = JSON.parse(localStorage.getItem("basket") ?? "[]");
-            if (basket[0]?.token !== token) {
+            if (basket?.userId !== theCurrentUserId) {
                 localStorage.removeItem("basket")
             }
             if (!Object.values(token) === "undefined") {
@@ -25,7 +35,7 @@ const AuthProvider = ({ children }) => {
         };
         verifyToken();
         console.log("isloggedin:", isLoggedIn);
-    }, [cookies.accesstoken]);
+    }, [cookies.accesstoken,theCurrentUserId]);
 
     const login = (data) => {
         setIsLoggedIn(true);

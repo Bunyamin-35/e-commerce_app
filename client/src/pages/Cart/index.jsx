@@ -9,7 +9,6 @@ const Cart = () => {
     const dispatch = useDispatch();
     //const [isModalOpen, setIsModalOpen] = useState(false);
     const basket = useSelector(state => state.cart.basket);
-    console.log("sdvfsd",basket);
     
 
     var totalPrice = basket.reduce(function (r, a) {
