@@ -14,6 +14,11 @@ const AuthProvider = ({ children }) => {
     useEffect(() => {
         const verifyToken = async () => {
             const token = cookies.accesstoken;
+
+            const basket = JSON.parse(localStorage.getItem("basket") ?? "[]");
+            if (basket[0]?.token !== token) {
+                localStorage.removeItem("basket")
+            }
             if (!Object.values(token) === "undefined") {
                 setIsLoggedIn(true);
             }
