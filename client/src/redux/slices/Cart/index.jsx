@@ -1,7 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit"
+
+
 const initialState = {
-    basket: 
-    JSON.parse(localStorage.getItem("basket") ?? "[]"),
+    basket:
+        JSON.parse(localStorage.getItem("basket") ?? "[]"),
     selectedProduct: {}
 }
 const cartSlice = createSlice({
@@ -12,9 +14,11 @@ const cartSlice = createSlice({
             const temp = { ...action.payload }
             const isExist = state.basket.find((item) => item._id === temp._id)
             state.selectedProduct = temp
+            
             if (isExist) {
                 isExist.count += 1
                 localStorage.setItem("basket", JSON.stringify(state.basket))
+
             } else {
                 temp.count = 1
                 state.basket.push(temp)

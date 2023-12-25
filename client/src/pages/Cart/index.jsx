@@ -1,24 +1,16 @@
-import React, { useEffect } from 'react'
-import { Modal } from 'antd';
-import { Form, Input, Button } from 'antd';
-
-import { useState } from 'react';
+import React from 'react'
 import Navbar from '../../components/Navbar/index.jsx';
 import { useDispatch, useSelector } from 'react-redux';
 import { handleIncreaseCount, handleDecreaseCount, handleDeleteItem } from '../../redux/slices/Cart/index.jsx';
-import { verifyCartPage } from '../../api.jsx';
+
 
 const Cart = () => {
 
     const dispatch = useDispatch();
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    //const [isModalOpen, setIsModalOpen] = useState(false);
     const basket = useSelector(state => state.cart.basket);
-    const theUser = useSelector((state)=>state.theCurentUser.theUser)
-    console.log("sdvfsd",theUser);
-    useEffect(()=>{
-        console.log("Cart page loaded!!");  
-        verifyCartPage(theUser)
-    })
+    console.log("sdvfsd",basket);
+    
 
     var totalPrice = basket.reduce(function (r, a) {
         return r + Number(a.price) * a.count;
@@ -34,13 +26,12 @@ const Cart = () => {
     return (
         <div>
             <Navbar />
-            <div>Hello {theUser}</div>
             <div className="pt-10">
                 <div className="mx-auto max-w-6xl justify-center px-6 md:flex md:space-x-6 xl:px-0">
                     <div className="rounded-lg md:w-2/3">
                         {basket.map((item, key) =>
                             <div key={key} className="justify-between mb-6 rounded-lg bg-white p-6 shadow-md sm:flex sm:justify-start">
-                                <img src={item.img} alt="product-image" className="w-full rounded-lg sm:w-40" />
+                                <img src={item.img} alt="product" className="w-full rounded-lg sm:w-40" />
                                 <div className="sm:ml-4 sm:flex sm:w-full sm:justify-between">
                                     <div className="mt-5 sm:mt-0">
                                         <h2 className="text-lg font-bold text-gray-900">{item.title}</h2>
