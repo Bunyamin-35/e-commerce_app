@@ -24,6 +24,7 @@ const Navbar = () => {
   const { isLoggedIn, setIsLoggedIn} = useAuth();
   const [cookies, removeCookie] = useCookies([]);
   const basket = useSelector(state => state.cart.basket)
+  //const basket = JSON.parse(localStorage.getItem("basket") ?? "[]");
 
 
   const handleLogout = () => {

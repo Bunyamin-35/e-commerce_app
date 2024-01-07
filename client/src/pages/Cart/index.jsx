@@ -9,6 +9,7 @@ const Cart = () => {
     const dispatch = useDispatch();
     //const [isModalOpen, setIsModalOpen] = useState(false);
     const basket = useSelector(state => state.cart.basket);
+    //const basket = JSON.parse(localStorage.getItem("basket") ?? "[]");
     
 
     var totalPrice = basket.reduce(function (r, a) {
