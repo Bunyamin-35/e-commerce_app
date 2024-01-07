@@ -21,19 +21,13 @@ import {
 import { useSelector } from 'react-redux'
 
 const Navbar = () => {
-  const { isLoggedIn, setIsLoggedIn} = useAuth();
+  const { isLoggedIn, setIsLoggedIn, handleLogout} = useAuth();
   const [cookies, removeCookie] = useCookies([]);
   const basket = useSelector(state => state.cart.basket)
   //const basket = JSON.parse(localStorage.getItem("basket") ?? "[]");
+  
 
-
-  const handleLogout = () => {
-    if (cookies.accesstoken) {
-      removeCookie("accesstoken");
-      setIsLoggedIn(false);
-      console.log("Logout process is carried out!");
-    }
-  }
+  
   return (
     <div className={styles.navbar}>
       <Link to="/" className={styles.logo}>
@@ -52,7 +46,7 @@ const Navbar = () => {
           <ShoppingOutlined />
           <div>Orders</div>
         </NavLink>
-        {isLoggedIn ?
+        {isLoggedIn == true ?
           <>
             <NavLink to="/dashboard" className={styles.sign_in}>
               <UserOutlined />

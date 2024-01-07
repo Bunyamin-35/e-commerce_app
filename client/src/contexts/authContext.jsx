@@ -9,7 +9,7 @@ const AuthProvider = ({ children }) => {
     const navigate = useNavigate();
 
     const [user, setUser] = useState(null);
-    const [isLoggedIn, setIsLoggedIn] = useState("");
+    const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem("isLoggedIn") ?? false);
     const [cookies, removeCookie] = useCookies([]);
     const [theCurrentUserId, setTheCurrentUserId] = useState("")
     const parseJwt = (token) => {
@@ -23,18 +23,18 @@ const AuthProvider = ({ children }) => {
     useEffect(() => {
         const verifyToken = () => {
             const token = cookies.accesstoken;
-            if (!token) {
+            if (!token || Object.values(token) !== "undefined" ) {
                 console.log("There is no token in the cookies");
-                setIsLoggedIn(false);
-
-            } else if (Object.values(token) !== "undefined") {
-                console.log("There is no token in the cookies")
-                navigate("/")
-            } 
+                console.log("isLoggedIn:",isLoggedIn);
+            } else if(token) {
+                localStorage.setItem("isLoggedIn",true)
+                console.log("aksdjbajksdnl:asdkals");
+                console.log("isLoggedIn:",isLoggedIn);
+            }
         };
 
         verifyToken();
-    }, [cookies.accesstoken]);
+    }, [cookies.accesstoken,isLoggedIn]);
 
 
     // const token = cookies.accesstoken;
@@ -83,6 +83,14 @@ const AuthProvider = ({ children }) => {
         setIsLoggedIn(true);
         setUser(data);
     }
+    const handleLogout = () => {
+        if (cookies.accesstoken) {
+          removeCookie("accesstoken");
+          setIsLoggedIn(false);
+          navigate("/")
+          console.log("Logout process is carried out!");
+        }
+      }
    
     localStorage.setItem("isLoggedIn", isLoggedIn)
 
@@ -90,6 +98,7 @@ const AuthProvider = ({ children }) => {
         isLoggedIn,
         user,
         login,
+        handleLogout,
         setIsLoggedIn,
     }
 
