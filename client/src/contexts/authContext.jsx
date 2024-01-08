@@ -88,6 +88,7 @@ const AuthProvider = ({ children }) => {
           removeCookie("accesstoken");
           setIsLoggedIn(false);
           navigate("/")
+          localStorage.removeItem("filteredBasket")
           console.log("Logout process is carried out!");
         }
       }

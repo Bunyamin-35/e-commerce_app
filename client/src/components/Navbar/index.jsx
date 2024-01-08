@@ -25,7 +25,7 @@ const Navbar = () => {
   const [cookies, removeCookie] = useCookies([]);
   const basket = useSelector(state => state.cart.basket)
   //const basket = JSON.parse(localStorage.getItem("basket") ?? "[]");
-  
+  const filteredBasket = localStorage.getItem("filteredBasket")
 
   
   return (
@@ -46,7 +46,7 @@ const Navbar = () => {
           <ShoppingOutlined />
           <div>Orders</div>
         </NavLink>
-        {isLoggedIn == true ?
+        {isLoggedIn ?
           <>
             <NavLink to="/dashboard" className={styles.sign_in}>
               <UserOutlined />
@@ -61,7 +61,7 @@ const Navbar = () => {
             <div>Sign In</div>
           </NavLink>}
 
-        <Badge count={basket.length} offset={[-30, -4]}>
+        <Badge count={filteredBasket?.length} offset={[-30, -4]}>
           <NavLink to="/cart" className={styles.cart}>
             <ShoppingCartOutlined />
             <div>Cart</div>

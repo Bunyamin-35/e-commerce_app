@@ -8,14 +8,14 @@ const Cart = () => {
 
     const dispatch = useDispatch();
     //const [isModalOpen, setIsModalOpen] = useState(false);
-    const basket = useSelector(state => state.cart.basket);
+    //const basket = useSelector(state => state.cart.basket);
     //const basket = JSON.parse(localStorage.getItem("basket") ?? "[]");
-    
+    const filteredBasket = localStorage.getItem("filteredBasket")
 
-    var totalPrice = basket.reduce(function (r, a) {
-        return r + Number(a.price) * a.count;
+    // var totalPrice = filteredBasket.reduce(function (r, a) {
+    //     return r + Number(a.price) * a.count;
 
-    }, 0);
+    // }, 0);
     // const onFinish = (values) => {
     //     console.log('Success:', values);
     // };
@@ -29,7 +29,7 @@ const Cart = () => {
             <div className="pt-10">
                 <div className="mx-auto max-w-6xl justify-center px-6 md:flex md:space-x-6 xl:px-0">
                     <div className="rounded-lg md:w-2/3">
-                        {basket.map((item, key) =>
+                        {filteredBasket?.map((item, key) =>
                             <div key={key} className="justify-between mb-6 rounded-lg bg-white p-6 shadow-md sm:flex sm:justify-start">
                                 <img src={item.img} alt="product" className="w-full rounded-lg sm:w-40" />
                                 <div className="sm:ml-4 sm:flex sm:w-full sm:justify-between">
@@ -61,7 +61,7 @@ const Cart = () => {
                     <div className="mt-6 h-full rounded-lg border bg-white p-6 shadow-md md:mt-0 md:w-1/3">
                         <div className="mb-2 flex justify-between">
                             <p className="text-gray-700">Subtotal</p>
-                            <p className="text-gray-700">{totalPrice} ₺</p>
+                            {/* <p className="text-gray-700">{totalPrice} ₺</p> */}
                         </div>
                         <div className="flex justify-between">
                             <p className="text-gray-700">Shipping</p>
@@ -71,7 +71,7 @@ const Cart = () => {
                         <div className="flex justify-between">
                             <p className="text-lg font-bold">Total</p>
                             <div className="">
-                                <p className="mb-1 text-lg font-bold">{totalPrice + 4.99} ₺</p>
+                                {/* <p className="mb-1 text-lg font-bold">{totalPrice + 4.99} ₺</p> */}
                                 <p className="text-sm text-gray-700">including VAT</p>
                             </div>
                         </div>

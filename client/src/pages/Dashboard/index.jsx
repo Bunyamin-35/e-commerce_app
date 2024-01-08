@@ -12,6 +12,7 @@ import { setCurrentUser } from "../../redux/slices/CurrentUser/index.jsx";
 const Dahsboard = () => {
     const navigate = useNavigate();
     const [username, setUsername] = useState("");
+    const [filteredBasket, setFilteredBasket] = useState([]);
     const [theCurrentUserId, setTheCurrentUserId] = useState("")
     const [cookies, removeCookie] = useCookies([]);
     const dispatch = useDispatch();
@@ -31,20 +32,24 @@ const Dahsboard = () => {
                 navigate("/login")
             }
             const token = cookies.accesstoken;
-
-
+            
             setTheCurrentUserId(parseJwt(token).userId)
-            const basket = JSON.parse(localStorage.getItem("basket") ?? "[]");
-            console.log("the curret user id", theCurrentUserId);
 
-            if (basket[0]?.userId !== theCurrentUserId) {
-                localStorage.removeItem("basket")
-            }
-            if (basket.length == 0) {
-                console.log("There is no item in the basket");
-            } else {
-                console.log("the basket in local str", basket);
-            }
+            
+            const basket = JSON.parse(localStorage.getItem("basket") ?? "[]");
+            const filteredBasket = basket.filter(item => item.userId === theCurrentUserId)
+            console.log(filteredBasket);
+            localStorage.setItem("filteredbasket",JSON.stringify(filteredBasket))
+            // console.log("the curret user id", theCurrentUserId);
+
+            // if (basket[0]?.userId !== theCurrentUserId) {
+            //     localStorage.removeItem("basket")
+            // }
+            // if (basket.length == 0) {
+            //     console.log("There is no item in the basket");
+            // } else {
+            //     console.log("the basket in local str", basket);
+            // }
             const { data } = await axios.post(
                 "http://localhost:4000/backend/auth/",
                 {},
