@@ -23,18 +23,15 @@ const AuthProvider = ({ children }) => {
     useEffect(() => {
         const verifyToken = () => {
             const token = cookies.accesstoken;
-            if (!token || Object.values(token) !== "undefined" ) {
-                console.log("There is no token in the cookies");
-                console.log("isLoggedIn:",isLoggedIn);
-            } else if(token) {
-                localStorage.setItem("isLoggedIn",true)
-                console.log("aksdjbajksdnl:asdkals");
-                console.log("isLoggedIn:",isLoggedIn);
+            if (!token || Object.values(token) !== "undefined") {
+
+            } else if (token) {
+                localStorage.setItem("isLoggedIn", true)
             }
         };
 
         verifyToken();
-    }, [cookies.accesstoken,isLoggedIn]);
+    }, [cookies.accesstoken, isLoggedIn]);
 
 
     // const token = cookies.accesstoken;
@@ -80,19 +77,26 @@ const AuthProvider = ({ children }) => {
     // }, [cookies.accesstoken]);
 
     const login = (data) => {
-        setIsLoggedIn(true);
-        setUser(data);
+        if (data) {
+            setIsLoggedIn(true);
+            setUser(data);
+        } else {
+            console.log("Some error in login process");
+        }
     }
     const handleLogout = () => {
-        if (cookies.accesstoken) {
-          removeCookie("accesstoken");
-          setIsLoggedIn(false);
-          navigate("/")
-          localStorage.removeItem("filteredBasket")
-          console.log("Logout process is carried out!");
-        }
-      }
-   
+        removeCookie("accesstoken");
+        setIsLoggedIn(false);
+        navigate("/")
+        console.log("Logout process is carried out!");
+        // if (cookies.accesstoken) {
+        //     removeCookie("accesstoken");
+        //     setIsLoggedIn(false);
+        //     navigate("/")
+        //     console.log("Logout process is carried out!");
+        // }
+    }
+
     localStorage.setItem("isLoggedIn", isLoggedIn)
 
     const values = {

@@ -21,13 +21,13 @@ import {
 import { useSelector } from 'react-redux'
 
 const Navbar = () => {
-  const { isLoggedIn, setIsLoggedIn, handleLogout} = useAuth();
+  const { isLoggedIn, setIsLoggedIn, handleLogout } = useAuth();
   const [cookies, removeCookie] = useCookies([]);
   const basket = useSelector(state => state.cart.basket)
   //const basket = JSON.parse(localStorage.getItem("basket") ?? "[]");
-  const filteredBasket = localStorage.getItem("filteredBasket")
+  const filteredBasket = JSON.parse(localStorage.getItem("filteredBasket")) || [];
 
-  
+
   return (
     <div className={styles.navbar}>
       <Link to="/" className={styles.logo}>
@@ -56,12 +56,14 @@ const Navbar = () => {
               <LogoutOutlined />
               <div>Sign Out</div>
             </NavLink>
-          </> : <NavLink to="/login" className={styles.sign_in}>
+          </> :
+          <NavLink to="/login" className={styles.sign_in}>
             <LoginOutlined />
             <div>Sign In</div>
-          </NavLink>}
+          </NavLink>
+        }
 
-        <Badge count={filteredBasket?.length} offset={[-30, -4]}>
+        <Badge count={filteredBasket.length} offset={[-30, -4]}>
           <NavLink to="/cart" className={styles.cart}>
             <ShoppingCartOutlined />
             <div>Cart</div>

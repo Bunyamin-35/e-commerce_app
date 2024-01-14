@@ -9,12 +9,12 @@ const Sidebar = ({username}) => {
                         <img src={logo} alt='logo_image' />
                     </h1>
                 </div>
-                <div class="flex items-center">
-                    <div class="flex-shrink-0 ms-5">
-                        <img class="h-16 w-16 rounded-full" src="https://demo.themesberg.com/windster/images/users/neil-sims.png" alt="" />
+                <div className="flex items-center">
+                    <div className="flex-shrink-0 ms-5">
+                        <img className="h-16 w-16 rounded-full" src="https://demo.themesberg.com/windster/images/users/neil-sims.png" alt="" />
                     </div>
-                    <div class="flex-shrink-0 ms-5">
-                        <p class="text-sm font-medium text-gray-900 truncate">
+                    <div className="flex-shrink-0 ms-5">
+                        <p className="text-sm font-medium text-gray-900 truncate">
                             {username}
                         </p>
                     </div>

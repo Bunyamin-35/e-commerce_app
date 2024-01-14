@@ -4,6 +4,8 @@ import { createSlice } from "@reduxjs/toolkit"
 const initialState = {
     basket:
         JSON.parse(localStorage.getItem("basket") ?? "[]"),
+    filteredBasket:
+    JSON.parse(localStorage.getItem("filteredBasket") ?? "[]"),
     selectedProduct: {}
 }
 const cartSlice = createSlice({
@@ -47,8 +49,11 @@ const cartSlice = createSlice({
         handleDeleteItem: (state, action) => {
             const temp = { ...action.payload };
             const updatedBasket = state.basket.filter((item) => item._id !== temp._id);
+            const updatedfilteredBasket = state.filteredBasket.filter((item) => item._id !== temp._id);
             state.basket = updatedBasket;
+            state.filteredBasket = updatedfilteredBasket;
             localStorage.setItem("basket", JSON.stringify(updatedBasket));
+            localStorage.setItem("filteredBasket", JSON.stringify(updatedfilteredBasket));
         }
     }
 })

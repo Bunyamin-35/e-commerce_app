@@ -18,6 +18,7 @@ const Login = () => {
 
             if (response.succeded) {
                 login(response)
+                
                 setTimeout(() => {
                     navigate("/dashboard")
                 }, 1000)
