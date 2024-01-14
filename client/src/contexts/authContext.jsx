@@ -96,6 +96,7 @@ const AuthProvider = ({ children }) => {
         //     console.log("Logout process is carried out!");
         // }
     }
+    
 
     localStorage.setItem("isLoggedIn", isLoggedIn)
 
@@ -105,6 +106,7 @@ const AuthProvider = ({ children }) => {
         login,
         handleLogout,
         setIsLoggedIn,
+        parseJwt
     }
 
     return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>

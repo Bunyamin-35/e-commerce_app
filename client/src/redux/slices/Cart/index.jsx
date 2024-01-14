@@ -49,6 +49,7 @@ const cartSlice = createSlice({
         handleDeleteItem: (state, action) => {
             const temp = { ...action.payload };
             const updatedBasket = state.basket.filter((item) => item._id !== temp._id);
+            console.log("temp",temp);
             const updatedfilteredBasket = state.filteredBasket.filter((item) => item._id !== temp._id);
             state.basket = updatedBasket;
             state.filteredBasket = updatedfilteredBasket;

@@ -9,6 +9,8 @@ import Sidebar from "../../components/Sidebar/index.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllUsers } from "../../redux/slices/Users/index.jsx";
 import { setCurrentUser } from "../../redux/slices/CurrentUser/index.jsx";
+import { useAuth } from "../../contexts/authContext.jsx";
+
 const Dahsboard = () => {
     const navigate = useNavigate();
     const [username, setUsername] = useState("");
@@ -16,14 +18,11 @@ const Dahsboard = () => {
     const [theCurrentUserId, setTheCurrentUserId] = useState("")
     const [cookies, removeCookie] = useCookies([]);
     const dispatch = useDispatch();
+    const { parseJwt } = useAuth();
+    const basket = useSelector(state => state.cart.basket)
+    //const basket = JSON.parse(localStorage.getItem("basket") ?? "[]");
 
-    const parseJwt = (token) => {
-        try {
-            return JSON.parse(atob(token.split('.')[1]));
-        } catch (e) {
-            return null;
-        }
-    };
+    
 
 
     useEffect(() => {
@@ -36,20 +35,10 @@ const Dahsboard = () => {
             setTheCurrentUserId(parseJwt(token).userId)
             console.log("the CURRENT USER:",theCurrentUserId);
             
-            const basket = JSON.parse(localStorage.getItem("basket") ?? "[]");
+            
             const filteredBasket = basket.filter(item => item.userId === theCurrentUserId)
             console.log(filteredBasket);
             localStorage.setItem("filteredBasket",JSON.stringify(filteredBasket))
-            // console.log("the curret user id", theCurrentUserId);
-
-            // if (basket[0]?.userId !== theCurrentUserId) {
-            //     localStorage.removeItem("basket")
-            // }
-            // if (basket.length == 0) {
-            //     console.log("There is no item in the basket");
-            // } else {
-            //     console.log("the basket in local str", basket);
-            // }
             const { data } = await axios.post(
                 "http://localhost:4000/backend/auth/",
                 {},
@@ -64,7 +53,7 @@ const Dahsboard = () => {
         isTokenExist();
         dispatch(fetchAllUsers())
         dispatch(setCurrentUser(username))
-    }, [cookies, navigate, removeCookie, dispatch, username]);
+    }, [cookies, navigate, removeCookie, dispatch, username,basket]);
 
     const users = useSelector((state) => state.users.users.allUsers)
     return (

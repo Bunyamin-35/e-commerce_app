@@ -8,8 +8,8 @@ const Cart = () => {
 
     const dispatch = useDispatch();
     //const [isModalOpen, setIsModalOpen] = useState(false);
-    //const basket = useSelector(state => state.cart.basket);
-    const basket = JSON.parse(localStorage.getItem("basket") ?? "[]");
+    const basket = useSelector(state => state.cart.basket);
+    //const basket = JSON.parse(localStorage.getItem("basket") ?? "[]");
     const filteredBasket = JSON.parse(localStorage.getItem("filteredBasket")) || [];
 
 
